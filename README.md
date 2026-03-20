@@ -1,13 +1,30 @@
-# Your GitHub Learning Lab Repository for Introducing GitHub
+# Audio-to-Cartoon Video Studio
 
-Welcome to **your** repository for your GitHub Learning Lab course. This repository will be used during the different activities that I will be guiding you through. See a word you don't understand? We've included an emoji 📖 next to some key terms. Click on it to see its definition.
+This repository now hosts a browser-based website that turns uploaded audio into a cartoon-style animated video experience without using Flask.
 
-Oh! I haven't introduced myself...
+## What it does
 
-I'm the GitHub Learning Lab bot and I'm here to help guide you in your journey to learn and master the various topics covered in this course. I will be using Issue and Pull Request comments to communicate with you. In fact, I already added an issue for you to check out.
+- Upload a primary audio track for narration, speech, rap, or singing.
+- Add optional background music with an adjustable mix level.
+- Preview a synchronized cartoon stage with animated characters, lip-sync motion, and audio-reactive effects.
+- Export the result as a downloadable WebM video using browser-native media APIs.
 
-![issue tab](https://lab.github.com/public/images/issue_tab.png)
+## Technical approach
 
-I'll meet you over there, can't wait to get started!
+The website is intentionally built with common, runtime-safe web platform features instead of a server framework:
 
-This course is using the :sparkles: open source project [reveal.js](https://github.com/hakimel/reveal.js/). In some cases we’ve made changes to the history so it would behave during class, so head to the original project repo to learn more about the cool people behind this project.
+- **Jekyll** for static-site delivery in this repo.
+- **Canvas 2D** for the animated cartoon stage.
+- **Web Audio API** for audio decoding, waveform energy analysis, and mixing.
+- **MediaRecorder** for client-side video export.
+
+## Run locally
+
+If your Ruby/Jekyll environment is available, use the existing project scripts:
+
+```bash
+./script/setup
+./script/server
+```
+
+Then open the local Jekyll site in your browser and upload your audio files.

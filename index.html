@@ -1,13 +1,136 @@
 ---
-layout: presentation
+layout: app
+title: Audio-to-Cartoon Video Studio
 ---
 
-{% for post in site.posts reversed %}
-	{% include slide.html %}
-	<div class="page-break"></div>
-{% endfor %}
-{% unless site.simple-slideshow %}
-{% if site.overview %}
-<section id="overview" class="step" {% for attr in site.overview-data %} data-{{attr[0]}}="{{attr[1]}}"{% endfor %}></section>
-{% endif %}
-{% endunless %}
+<main class="page-shell">
+  <section class="hero-card">
+    <div class="hero-copy">
+      <p class="eyebrow">Audio to video generator</p>
+      <h1>Turn voice audio into a cartoon music video that moves in sync.</h1>
+      <p class="hero-text">
+        Upload narration or singing, blend in optional background music, and export a stylized animated video.
+        The stage reacts to your audio energy so characters bounce, lip-sync, and trigger effects in rhythm.
+      </p>
+      <div class="hero-pills">
+        <span>Browser-based</span>
+        <span>No Flask</span>
+        <span>Canvas + Web Audio + MediaRecorder</span>
+      </div>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <strong>1</strong>
+        <span>Main audio track</span>
+      </div>
+      <div>
+        <strong>+1</strong>
+        <span>Optional music bed</span>
+      </div>
+      <div>
+        <strong>30fps</strong>
+        <span>Animated export</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="studio-grid">
+    <aside class="control-card">
+      <h2>Studio controls</h2>
+      <form id="studio-form" class="control-form">
+        <label class="field">
+          <span>Main audio</span>
+          <input id="voice-file" type="file" accept="audio/*" required>
+          <small>Upload speech, podcast narration, rap, or singing.</small>
+        </label>
+
+        <label class="field">
+          <span>Background music</span>
+          <input id="music-file" type="file" accept="audio/*">
+          <small>Optional. Instrumentals or ambient music work best.</small>
+        </label>
+
+        <label class="field">
+          <span>Visual mood</span>
+          <select id="mood-select">
+            <option value="sunset">Sunset Pop</option>
+            <option value="neon">Neon Stage</option>
+            <option value="forest">Cartoon Forest</option>
+            <option value="space">Space Parade</option>
+          </select>
+        </label>
+
+        <label class="field">
+          <span>Character style</span>
+          <select id="character-style">
+            <option value="band">Band Trio</option>
+            <option value="duo">Happy Duo</option>
+            <option value="solo">Spotlight Solo</option>
+          </select>
+        </label>
+
+        <label class="field">
+          <div class="field-row">
+            <span>Music volume</span>
+            <output id="music-volume-output">35%</output>
+          </div>
+          <input id="music-volume" type="range" min="0" max="70" value="35">
+        </label>
+
+        <label class="field">
+          <div class="field-row">
+            <span>Effect intensity</span>
+            <output id="fx-output">70%</output>
+          </div>
+          <input id="fx-intensity" type="range" min="25" max="100" value="70">
+        </label>
+
+        <div class="button-row">
+          <button type="button" id="preview-btn" class="primary-btn">Preview animation</button>
+          <button type="button" id="export-btn" class="secondary-btn">Export video</button>
+        </div>
+      </form>
+
+      <div class="status-panel">
+        <p id="status-text">Upload an audio file to build your first synced cartoon scene.</p>
+        <div class="progress-track" aria-hidden="true">
+          <span id="progress-bar"></span>
+        </div>
+      </div>
+    </aside>
+
+    <section class="preview-card">
+      <div class="preview-header">
+        <div>
+          <h2>Live preview stage</h2>
+          <p>Characters dance, lip-sync, and trigger comic effects based on your audio energy.</p>
+        </div>
+        <div class="transport">
+          <button type="button" id="stop-btn">Stop</button>
+          <span id="time-label">00:00 / 00:00</span>
+        </div>
+      </div>
+      <canvas id="scene-canvas" width="1280" height="720" aria-label="Animated cartoon preview"></canvas>
+      <div class="legend">
+        <span><i class="dot voice"></i> Voice energy drives lip-sync and movement</span>
+        <span><i class="dot music"></i> Music adds ambience and sparkle</span>
+        <span><i class="dot export"></i> Export saves a downloadable WebM video</span>
+      </div>
+    </section>
+  </section>
+
+  <section class="feature-grid">
+    <article>
+      <h3>Audio-reactive animation</h3>
+      <p>Waveform analysis turns louder moments into stronger jumps, confetti bursts, and larger mouth shapes.</p>
+    </article>
+    <article>
+      <h3>Automatic soundtrack blending</h3>
+      <p>The optional backing track sits behind the voice using a dedicated gain control so dialogue stays clear.</p>
+    </article>
+    <article>
+      <h3>Safe, common web APIs</h3>
+      <p>The app uses standard browser APIs that are widely used in production: Canvas, Web Audio, and MediaRecorder.</p>
+    </article>
+  </section>
+</main>
